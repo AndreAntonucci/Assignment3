@@ -1,3 +1,24 @@
+html {
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* orizzontale */
+    align-items: center;      /* verticale */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .nav-list {
     padding: 0;
     margin-top: 50px;
@@ -5,6 +26,7 @@
     flex-direction: row;
     justify-content: space-between;
     list-style: none;
+    gap: 20px;
 }
 
 a {
