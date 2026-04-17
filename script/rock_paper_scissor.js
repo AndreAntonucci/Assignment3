@@ -18,7 +18,7 @@ function playRound(playerSelection, computerSelection) {
         case "rock":
             switch (computerSelection) {
                 case "rock":
-                    message = "It's a draw!"
+                    message = "It's a draw! But you still used one attempt!"
                     break;
                 case "paper":
                     message = "You lose! Paper beats Rock!"
@@ -36,10 +36,10 @@ function playRound(playerSelection, computerSelection) {
                     isGameWon = true;
                     break;
                 case "paper":
-                    message = "It's a draw!"
+                    message = "It's a draw! But you still used one attempt!"
                     break;
                 case "scissors":
-                    message = "You win! Rock beats Scissors!"
+                    message = "You lose! Scissors beats Papers!"
                     break;
             }
             break;
@@ -53,7 +53,7 @@ function playRound(playerSelection, computerSelection) {
                     isGameWon = true;
                     break;
                 case "scissors":
-                    message = "It's a draw!"
+                    message = "It's a draw! But you still used one attempt!"
                     break;
             }
             break;
@@ -65,12 +65,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function validatePlayerSelection(playerSelection) {
-    if(playerSelection == null){
-        throw new Error("Selection cannot not be empty!")
-    }
-
-    if (playerSelection == "") {
-        throw new Error("Selection cannot not be empty!")
+    if (playerSelection == null || playerSelection == "") {
+        throw new Error("Selection cannot not be void!")
     }
 
     if (Number(playerSelection)) {
@@ -79,31 +75,29 @@ function validatePlayerSelection(playerSelection) {
 }
 
 function game() {
-    const computerSelection = computerPlay();
     let totalRounds = 5;
     var message = "";
     while (totalRounds > 0) {
+        const computerSelection = computerPlay();
         const playerSelection = prompt("Select one of the following: \nRock Paper Scissors");
         try {
             validatePlayerSelection(playerSelection);
             let result = playRound(playerSelection, computerSelection);
-            ({ isGameWon, message } = result);
+            let finaleMessage = "";
+            let { isGameWon, message } = result;
             if (isGameWon) {
-                break;
+                finaleMessage = `${message} You saved the world from Xabaras! \nPeople will remember you as their savior! \nCongratulations!`;
+                alert(finaleMessage);
+                return;
             } else {
                 alert(message);
             }
         } catch (e) {
-             alert(e.message);
+            alert(e.message);
         }
+
         totalRounds--;
     }
-    if (totalRounds == 0) {
-         alert("You run out of attempts! The world is now controlled by the Evil AI");
-        // alert("You run out of attempts! The world is now controlled by the Evil AI");
-    } else {
-         alert(message);
-    }
+    alert("You condemned the world to a life of suffering! \nPeople will hate you for the rest of your life!");
+
 }
-
-

@@ -59,6 +59,7 @@ function addScore(attempt) {
 };
 
 function checkResult(numberToGuess, maxAttempts, numberOfAttempts, isNumberGuessed, message) {
+    const remaining = maxAttempts - numberOfAttempts;
     if (isNumberGuessed) {
         const attempt = {
             totalAttempts: 0,
@@ -110,13 +111,13 @@ function checkResult(numberToGuess, maxAttempts, numberOfAttempts, isNumberGuess
         }
 
         addScore(attempt);
-          alert(`${message} \nYou used ${numberOfAttempts} out of 10 attempts! Good Job! \nYou gained ${attempt.points} points!`);
+        alert(`${message} \nYou used ${remaining} out of 10 attempts! Good Job! \nYou gained ${attempt.points} points!`);
         return true;
     } else {
         if (numberOfAttempts == maxAttempts) {
-            alert(`You have no more attempts left!`);
+            alert(`You have no more attempts left! Axiom has now full control!`);
         } else {
-            alert(`${message}. You have ${maxAttempts} atttempts left!`);
+            alert(`${message}. You have ${remaining} atttempts left!`);
         }
         return false;
     }
@@ -131,9 +132,7 @@ function game() {
         try {
             const playerGuess = getPlayerGuess();
             const { isNumberGuessed, message } = checkGuess(playerGuess, numberToGuess);
-            
-            maxAttempts--;
-            
+
             if (checkResult(numberToGuess, maxAttempts, numberOfAttempts, isNumberGuessed, message)) {
                 break;
             }
