@@ -8,8 +8,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* orizzontale */
-    align-items: center;      /* verticale */
+    justify-content: center;  
+    align-items: center;      
 }
 
 .header {
